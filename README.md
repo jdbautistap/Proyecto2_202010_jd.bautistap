@@ -1,2 +1,3 @@
 # Proyecto2_202010_jd.bautistap
-REVISAR RAMA ENTREGA DE DISEÑO
+REVISAR RAMA "entrega-diseNo"
+
