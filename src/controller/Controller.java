@@ -160,7 +160,8 @@ public class Controller
 					view.printMessage("Por Por favor ingrese Fecha Final: ");
 					h = lector.next();
 					view.printMessage("Por Por favor localidad: ");
-					j = lector.next();
+					lector.nextLine();
+			        j = lector.nextLine();
 
 
 					try 
@@ -174,10 +175,8 @@ public class Controller
 					catch (ParseException e) 
 					{
 						// TODO Auto-generated catch block
-						view.printMessage("mierda");
 						e.printStackTrace();
 					}
-					view.printMessage("mierda2");
 				}
 				else
 				{
@@ -223,7 +222,7 @@ public class Controller
 						e.printStackTrace();
 					}
 					view.printMessage("Cada * equivale a 15 o fracción y # a 200 o fracción.\n");
-					view.printMessage("Las perdidas son: "+modelo.perdidas2C()+"\n");
+					view.printMessage("Las perdidas son: "+modelo.conclusiones2C()+"\n");
 
 				}
 				else
@@ -246,7 +245,7 @@ public class Controller
 						e.printStackTrace();
 					}
 					view.printMessage("Cada * equivale a 15 o fracción y # a 200 o fracción.\n");
-					view.printMessage("Las perdidas son: "+modelo.perdidas3C()+"\n");
+					view.printMessage("Las perdidas son: "+modelo.conclusiones3C()+"\n");
 
 				}
 				

@@ -137,6 +137,11 @@ public  class Commparendo implements Comparable<Commparendo>
 	{
 		return Longitud;
 	}
+	
+	public int darDiasEspera()
+	{
+		return diasEspera;
+	}
 	/**
 	 * Retorna Infromacion del comparendo.
 	 */
@@ -241,11 +246,11 @@ public  class Commparendo implements Comparable<Commparendo>
 	{
 		int precio=4;
 
-		if(dardescripcion().contains("SERA INMOVILIZADO")||dardescripcion().contains("SERÁ INMOVILIZADO"))
+		if(dardescripcion().contains("INMOVILIZADO")==true)
 		{
 			precio=400;
 		}
-		else if (dardescripcion().contains("LICENCIA DE CONDUCCIÓN")||dardescripcion().contains("LICENCIA DE CONDUCCION"));
+		else if (dardescripcion().contains("LICENCIA")==true)
 		{
 			precio=40;
 		}

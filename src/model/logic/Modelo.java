@@ -43,6 +43,29 @@ public class Modelo <T extends Comparable<T>>
 	private MaxColaPrioridad3C datos3;
 
 	private LinkedList<Commparendo> datos4;
+
+
+	private int menosdias4;
+	private int masdias4;
+	private int totaldias4;
+	private int totalComparendos4;
+	private double promedio4;
+
+	private int menosdias40;
+	private int masdias40;
+	private int totaldias40;
+	private int totalComparendos40;
+	private double promedio40;
+
+	private int menosdias400;
+	private int masdias400;
+	private int totaldias400;
+	private int totalComparendos400;
+	private double promedio400;
+
+	private int totaldias;
+	private int totalcomparendos;
+	private double promediototal;
 	/**
 	 * Constructor del modelo del mundo con capacidad predefinida
 	 */
@@ -53,6 +76,28 @@ public class Modelo <T extends Comparable<T>>
 		datos2 = new LinkedList<>();
 		datos3 = new MaxColaPrioridad3C();
 		datos4 = new LinkedList<>();
+
+		menosdias4=0;
+		masdias4=0;
+		totaldias4=0;
+		totalComparendos4=0;
+		promedio4=0;
+
+		menosdias40=0;
+		masdias40=0;
+		totaldias40=0;
+		totalComparendos40=0;
+		promedio40=0;
+
+		menosdias400=0;
+		masdias400=0;
+		totaldias400=0;
+		totalComparendos400=0;
+		promedio400=0;
+
+		totaldias=0;
+		totalcomparendos=0;
+		promediototal=0;
 	}
 
 	/**
@@ -853,6 +898,26 @@ public class Modelo <T extends Comparable<T>>
 
 	public int perdidas2C()
 	{
+		menosdias4=1;
+		masdias4=0;
+		totaldias4=0;
+		totalComparendos4=0;
+		promedio4=0;
+
+		menosdias40=1;
+		masdias40=0;
+		totaldias40=0;
+		totalComparendos40=0;
+		promedio40=0;
+
+		menosdias400=1;
+		masdias400=0;
+		totaldias400=0;
+		totalComparendos400=0;
+		promedio400=0;
+
+		totalcomparendos=0;
+		promediototal=0;
 		Cola<Commparendo> ayuda = new Cola<Commparendo>();
 		Nodo<Commparendo> hola = new  Nodo<Commparendo> (null);
 		hola=(Nodo<Commparendo>) datos2.darprimero();
@@ -871,12 +936,85 @@ public class Modelo <T extends Comparable<T>>
 
 		while(ayuda.isEmpty()==false)
 		{
-			perdidas = perdidas+ayuda.dequeue().costoMetodo2C();
+			Commparendo c=ayuda.dequeue();
+
+			if(c.darprecio()==4)
+			{
+				if (c.darDiasEspera()>masdias4)
+				{
+					masdias4=c.darDiasEspera();
+				}
+				if (c.darDiasEspera()<menosdias4) 
+				{
+					menosdias4=c.darDiasEspera();
+				}
+				totaldias4+=c.darDiasEspera();
+				totalComparendos4++;
+			}
+
+			if(c.darprecio()==40)
+			{
+				if (c.darDiasEspera()>masdias40)
+				{
+					masdias40=c.darDiasEspera();
+				}
+				if (c.darDiasEspera()<menosdias40) 
+				{
+					menosdias40=c.darDiasEspera();
+				}
+				totaldias40+=c.darDiasEspera();
+				totalComparendos40++;
+			}
+
+			if(c.darprecio()==400)
+			{
+				if (c.darDiasEspera()>masdias400)
+				{
+					masdias400=c.darDiasEspera();
+				}
+				if (c.darDiasEspera()<menosdias400) 
+				{
+					menosdias400=c.darDiasEspera();
+				}
+				totaldias400+=c.darDiasEspera();
+				totalComparendos400++;
+			}
+			totaldias+=c.darDiasEspera();
+			totalcomparendos++;
+			perdidas+=c.costoMetodo2C();
 		}
+
 
 		return perdidas;
 	}
 
+	public String conclusiones2C()
+	{
+		String resp="";
+		resp+="Las perdidas gerneradas fueron: "+perdidas2C()+"\n";
+		promediototal=totaldias/totalcomparendos;
+		resp+="El promedio de espera de un Comparendo es de: "+promediototal+"\n";
+
+		resp+="El tiempo minimo de espera para comparendos de 4 fue: "+menosdias4+"\n";
+		resp+="El tiempo maximo de espera para comparendos de 4 fue: "+masdias4+"\n";
+		resp+="Hubo un total de comparendos de 4 de: "+totalComparendos4+"\n";
+		promedio4=totaldias4/totalComparendos4;
+		resp+="El promedio de espera de comparendos de 4 fue: "+promedio4+"\n";
+
+		resp+="El tiempo minimo de espera para comparendos de 40 fue: "+menosdias40+"\n";
+		resp+="El tiempo maximo de espera para comparendos de 40 fue: "+masdias40+"\n";
+		resp+="Hubo un total de comparendos de 40 de: "+totalComparendos40+"\n";
+		promedio40=totaldias40/totalComparendos40;
+		resp+="El promedio de espera de comparendos de 40 fue: "+promedio40+"\n";
+
+		resp+="El tiempo minimo de espera para comparendos de 400 fue: "+menosdias400+"\n";
+		resp+="El tiempo maximo de espera para comparendos de 400 fue: "+masdias400+"\n";
+		resp+="Hubo un total de comparendos de 400 de: "+totalComparendos400+"\n";
+		promedio400=totaldias400/totalComparendos400;
+		resp+="El promedio de espera de comparendos de 400 fue: "+promedio400+"\n";
+
+		return resp;
+	}
 
 	@SuppressWarnings({ "unchecked", "deprecation" })
 	public String metodo3C() throws ParseException
@@ -903,7 +1041,7 @@ public class Modelo <T extends Comparable<T>>
 			hola=hola.darSiguiente();
 		}
 
-		
+
 		while(fechaActual.compareTo(cambiarStringaDate("2019/01/01"))<0)
 		{
 
@@ -914,7 +1052,7 @@ public class Modelo <T extends Comparable<T>>
 				x=tabla.get(generarLlave(fechaActual)).delMax();
 				datos3.agregar(x);
 			}
-			
+
 			int w=0;
 
 			while(datos3.darNumElementos()!=0 && w<1500)
@@ -993,9 +1131,31 @@ public class Modelo <T extends Comparable<T>>
 	}
 
 
-	
+
+
 	public int perdidas3C()
 	{
+		menosdias4=1;
+		masdias4=0;
+		totaldias4=0;
+		totalComparendos4=0;
+		promedio4=0;
+
+		menosdias40=1;
+		masdias40=0;
+		totaldias40=0;
+		totalComparendos40=0;
+		promedio40=0;
+
+		menosdias400=1;
+		masdias400=0;
+		totaldias400=0;
+		totalComparendos400=0;
+		promedio400=0;
+
+		totalcomparendos=0;
+		promediototal=0;
+
 		Cola<Commparendo> ayuda = new Cola<Commparendo>();
 		Nodo<Commparendo> hola = new  Nodo<Commparendo> (null);
 		hola=(Nodo<Commparendo>) datos4.darprimero();
@@ -1003,21 +1163,91 @@ public class Modelo <T extends Comparable<T>>
 
 		while(hola!=null)
 		{
-			if(hola.darElem().costoMetodo2C()!=0)
-			{
-				ayuda.enqueue(hola.darElem());
-			}
+			ayuda.enqueue(hola.darElem());
+
 			hola=hola.darSiguiente();
 		}
 
-
-
 		while(ayuda.isEmpty()==false)
 		{
-			perdidas = perdidas+ayuda.dequeue().costoMetodo2C();
+
+			Commparendo c=ayuda.dequeue();
+
+			if(c.darprecio()==4)
+			{
+				if (c.darDiasEspera()>masdias4)
+				{
+					masdias4=c.darDiasEspera();
+				}
+				if (c.darDiasEspera()<menosdias4) 
+				{
+					menosdias4=c.darDiasEspera();
+				}
+				totaldias4+=c.darDiasEspera();
+				totalComparendos4++;
+			}
+
+			if(c.darprecio()==40)
+			{
+				if (c.darDiasEspera()>masdias40)
+				{
+					masdias40=c.darDiasEspera();
+				}
+				if (c.darDiasEspera()<menosdias40) 
+				{
+					menosdias40=c.darDiasEspera();
+				}
+				totaldias40+=c.darDiasEspera();
+				totalComparendos40++;
+			}
+
+			if(c.darprecio()==400)
+			{
+				if (c.darDiasEspera()>masdias400)
+				{
+					masdias400=c.darDiasEspera();
+				}
+				if (c.darDiasEspera()<menosdias400) 
+				{
+					menosdias400=c.darDiasEspera();
+				}
+				totaldias400+=c.darDiasEspera();
+				totalComparendos400++;
+			}
+			totaldias+=c.darDiasEspera();
+			totalcomparendos++;
+			perdidas+=c.costoMetodo2C();
 		}
 
 		return perdidas;
+	}
+
+	public String conclusiones3C()
+	{
+		String resp="";
+		resp+="Las perdidas gerneradas fueron: "+perdidas3C()+"\n";
+		promediototal=totaldias/totalcomparendos;
+		resp+="El promedio de espera de un Comparendo es de: "+promediototal+"\n";
+
+		resp+="El tiempo minimo de espera para comparendos de 4 fue: "+menosdias4+"\n";
+		resp+="El tiempo maximo de espera para comparendos de 4 fue: "+masdias4+"\n";
+		resp+="Hubo un total de comparendos de 4 de: "+totalComparendos4+"\n";
+		promedio4=totaldias4/totalComparendos4;
+		resp+="El promedio de espera de comparendos de 4 fue: "+promedio4+"\n";
+
+		resp+="El tiempo minimo de espera para comparendos de 40 fue: "+menosdias40+"\n";
+		resp+="El tiempo maximo de espera para comparendos de 40 fue: "+masdias40+"\n";
+		resp+="Hubo un total de comparendos de 40 de: "+totalComparendos40+"\n";
+		promedio40=totaldias40/totalComparendos40;
+		resp+="El promedio de espera de comparendos de 40 fue: "+promedio40+"\n";
+
+		resp+="El tiempo minimo de espera para comparendos de 400 fue: "+menosdias400+"\n";
+		resp+="El tiempo maximo de espera para comparendos de 400 fue: "+masdias400+"\n";
+		resp+="Hubo un total de comparendos de 400 de: "+totalComparendos400+"\n";
+		promedio400=totaldias400/totalComparendos400;
+		resp+="El promedio de espera de comparendos de 400 fue: "+promedio400+"\n";
+
+		return resp;
 	}
 }
 
